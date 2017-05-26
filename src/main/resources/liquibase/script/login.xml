@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="create-table-login" author="balazskovacs">
+		<createTable tableName="LOGIN">
+			<column name="USERNAME" type="VARCHAR(50)">
+				<constraints primaryKey="true" foreignKeyName="fk_login_username" referencedTableName="USR_ALIAS" referencedColumnNames="USERNAME" />
+			</column>
+			<column name="PASSWORD_ID" type="INT(5)">
+				<constraints foreignKeyName="fk_login_password_id" referencedTableName="USR_PASSWORD" referencedColumnNames="PASSWORD_ID" />
+			</column>
+			<column name="FAILED_LOGIN_COUNTER" type="TINYINT" defaultValueNumeric="0" />
+			<column name="ENABLED" type="BOOLEAN" defaultValueBoolean="true" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>
